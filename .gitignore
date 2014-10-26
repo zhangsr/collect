@@ -1,0 +1,16 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+
+//match add
+*.iml
+build.gradle
+*.properties
+gradlew
+gradle/
+.idea/
+*.bat
+settings.gradle
