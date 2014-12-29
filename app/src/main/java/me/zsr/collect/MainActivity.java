@@ -16,6 +16,9 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(
                 R.id.navigation_drawer);
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(1)).commit();
     }
 
     @Override

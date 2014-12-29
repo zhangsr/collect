@@ -9,6 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.FindCallback;
+
+import java.util.List;
+
 /**
  * @description:
  * @author: Saul
@@ -41,8 +48,34 @@ public class PlaceholderFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new BookAdapter(new String[]{"book", "open", "travel", "about", "book", "open", "travel", "about"});
-        mRecyclerView.setAdapter(mAdapter);
+
+        AVQuery<AVObject> query = null;
+        switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
+            case 1:
+                query = new AVQuery<AVObject>("Book");
+                break;
+            case 2:
+                query = new AVQuery<AVObject>("Movie");
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+        }
+
+        if (query != null) {
+            query.findInBackground(new FindCallback<AVObject>() {
+                public void done(List<AVObject> avObjects, AVException e) {
+                    if (e == null) {
+                        mAdapter = new BookAdapter(avObjects, getActivity());
+                        mRecyclerView.setAdapter(mAdapter);
+                    } else {
+                    }
+                }
+            });
+        }
+
         return rootView;
     }
 }

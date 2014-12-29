@@ -46,7 +46,7 @@ public class NavigationDrawerFragment extends Fragment {
         mListView = (ListView) view.findViewById(R.id.list_navigation_drawer);
         mListView.setAdapter(new ArrayAdapter<String>(getActivity().getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_1, android.R.id.text1,
-                new String[]{"book", "open", "travel", "about"}));
+                new String[]{"Book", "Movie", "Travel", "About"}));
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
